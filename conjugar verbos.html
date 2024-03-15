@@ -1,0 +1,72 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+            function conjugacionPresente(verbo) {
+                let raiz = verbo.substring(0, verbo.length - 2);
+                return {
+                    yo: raiz + 'o',
+                    tu: raiz + 'as',
+                    el: raiz + 'a',
+                    nosotros: raiz + 'amos',
+                    vosotros: raiz + 'áis',
+                    ellos: raiz + 'an'
+                };
+            }
+
+            function conjugacionPreterito(verbo) {
+                let raiz = verbo.substring(0, verbo.length - 2);
+                return {
+                    yo: raiz + 'e',
+                    tu: raiz + 'aste',
+                    el: raiz + 'o',
+                    nosotros: raiz + 'amos',
+                    vosotros: raiz + 'asteis',
+                    ellos: raiz + 'aron'
+                };
+            }
+
+            function conjugacionFuturo(verbo) {
+                let raiz = verbo.substring(0, verbo.length - 2);
+                return {
+                    yo: raiz + 'e',
+                    tu: raiz + 'as',
+                    el: raiz + 'a',
+                    nosotros: raiz + 'emos',
+                    vosotros: raiz + 'eis',
+                    ellos: raiz + 'an'
+                };
+            }
+
+            function conjugarVerbo(verbo, tiempo) {
+                switch (tiempo) {
+                    case 'A':
+                        return conjugacionPresente(verbo);
+                    case 'P':
+                        return conjugacionPreterito(verbo);
+                    case 'F':
+                        return conjugacionFuturo(verbo);
+                    default:
+                        return {};
+                }
+            }
+
+            let entrada = prompt('Ingrese el verbo y el tiempo (ejemplo: saltar P):');
+            while (entrada !== 'terminar T') {
+                let partes = entrada.split(' ');
+                let verbo = partes[0];
+                let tiempo = partes[1];
+
+                let conjugacion = conjugarVerbo(verbo, tiempo);
+
+                for (let persona in conjugacion) {
+                    document.write(persona + ' ' + conjugacion[persona] + '<br>');
+                }
+
+                entrada = prompt('Ingrese el verbo y el tiempo (ejemplo: saltar P):');
+            }
+        </script>
+    </body>
+</html>
